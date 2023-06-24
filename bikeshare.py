@@ -41,7 +41,11 @@ def get_filters():
 
 def get_city_filter_input():
     """
-    Get user input for city (chicago, new york city, washington).
+    Asks user to specify a city to analyze.
+    User can chose between Chicago, New York and Washington. The input is case insensitive.
+
+    Returns:
+        (str) city - name of the city to analyze
     """
     while True:
         try:
