@@ -367,10 +367,15 @@ def main():
             user_stats(df)
             print_filter_statement(city, month, day)
             display_raw_data(df_raw)
-
-        restart = input('\nWould you like to restart? (Enter yes or no)\n')
-        if restart.lower() not in ['yes', 'y']:
-            break
+        while True:
+            restart = input('\nWould you like to restart? (Enter yes or no)\n')
+            if restart.lower() in ['no', 'n']:
+                return
+            elif restart.lower() in ['yes', 'y']:
+                print('\n\n')
+                break
+            else:
+                print('\nInvalid input. Please try again.')
 
 
 if __name__ == "__main__":
