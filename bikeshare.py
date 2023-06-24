@@ -322,23 +322,34 @@ def print_filter_statement(city, month, day):
 
 def display_raw_data(df):
     """Display raw day of the city by 5 rows each time the user confirms."""
-    display = input('\nWould you like to see 5 rows of raw data? (Enter yes or no)\n')
-    if display.lower() not in ['yes', 'y']:
-        return
-    start_index = 0
-    end_index = 5
-    while(start_index < df.shape[0]):
-        print(df.iloc[start_index:end_index])
-        if(end_index == -1):
-            break
-        next = input('\nWould you like to see next 5 rows? (Enter yes or no)\n')
-        if next.lower() not in ['yes', 'y']:
-            break
-        else:
-            start_index += 5
-            end_index += 5
-            if(end_index == df.shape[0]):
+    while True:
+        display = input('\nWould you like to see 5 rows of raw data? (Enter yes or no)\n')
+        if display.lower()  in ['no', 'n']:
+            return
+        elif display.lower() in ['yes', 'y']:
+            start_index = 0
+            end_index = 5
+            if(end_index >= df.shape[0]):
                 end_index = -1
+            print(df.iloc[start_index:end_index])
+            if(end_index == -1):
+                return
+            while(start_index < df.shape[0]):
+                next = input('\nWould you like to see next 5 rows? (Enter yes or no)\n')
+                if next.lower() in ['no', 'n']:
+                    return
+                elif next.lower() in ['yes', 'y']:
+                    start_index += 5
+                    end_index += 5
+                    if(end_index >= df.shape[0]):
+                        end_index = -1
+                    print(df.iloc[start_index:end_index])
+                    if(end_index == -1):
+                        return
+                else:
+                    print('\nInvalid input. Please try again.')
+        else:
+            print('\nInvalid input. Please try again.')
 
 
 def main():
